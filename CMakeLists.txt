@@ -5,7 +5,6 @@ project(heapsapp)
 include_directories(hashlink/src)
 
 # LibHL
-
 file(GLOB libhl
     hashlink/src/std/*.c
 	hashlink/src/alloc.c
@@ -25,7 +24,6 @@ target_include_directories(hl PRIVATE hashlink/include/pcre)
 target_link_libraries(hl log)
 
 # FMT
-
 set(TJ_LIB ${CMAKE_CURRENT_SOURCE_DIR}/libjpeg-turbo/obj/local/${ANDROID_ABI}/libjpeg-turbo.a)
 add_custom_target(turbojpeg
 	${ANDROID_NDK}/ndk-build APP_ABI=${ANDROID_ABI} APP_PLATFORM=${ANDROID_PLATFORM}
@@ -64,7 +62,6 @@ target_include_directories(fmt.hdll PRIVATE
 )
 
 # SDL
-
 add_subdirectory(sdl2)
 file(GLOB sdl hashlink/libs/sdl/*.c)
 add_library(sdl.hdll STATIC ${sdl})
@@ -72,8 +69,6 @@ target_include_directories(sdl.hdll PUBLIC sdl2/include)
 target_link_libraries(sdl.hdll SDL2 SDL2main EGL GLESv3)
 
 # OpenAL
-
-configure_file(${CMAKE_CURRENT_SOURCE_DIR}/openal-nativetools/CMakeLists.txt ${CMAKE_CURRENT_SOURCE_DIR}/openal-soft COPYONLY)
 add_subdirectory(openal-soft)
 file(GLOB openal hashlink/libs/openal/*.c)
 add_library(openal.hdll STATIC ${openal})
@@ -81,12 +76,10 @@ target_include_directories(openal.hdll PUBLIC openal-soft/include)
 target_link_libraries(openal.hdll OpenAL)
 
 # UI
-
 file(GLOB ui hashlink/libs/ui/ui_stub.c)
 add_library(ui.hdll STATIC ${ui})
 
 # Heaps Application
-
 add_library(heapsapp SHARED out/main.c jni.c)
 target_include_directories(heapsapp PRIVATE out)
 target_link_libraries(heapsapp hl sdl.hdll fmt.hdll openal.hdll ui.hdll)

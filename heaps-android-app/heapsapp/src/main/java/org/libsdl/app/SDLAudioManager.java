@@ -122,18 +122,19 @@ public class SDLAudioManager
         desiredFrames = Math.max(desiredFrames, (AudioRecord.getMinBufferSize(sampleRate, channelConfig, audioFormat) + frameSize - 1) / frameSize);
 
         if (mAudioRecord == null) {
-            mAudioRecord = new AudioRecord(MediaRecorder.AudioSource.DEFAULT, sampleRate,
-                    channelConfig, audioFormat, desiredFrames * frameSize);
+            throw new RuntimeException("Fuck off");
+            // mAudioRecord = new AudioRecord(MediaRecorder.AudioSource.DEFAULT, sampleRate,
+                    // channelConfig, audioFormat, desiredFrames * frameSize);
 
             // see notes about AudioTrack state in audioOpen(), above. Probably also applies here.
-            if (mAudioRecord.getState() != AudioRecord.STATE_INITIALIZED) {
-                Log.e(TAG, "Failed during initialization of AudioRecord");
-                mAudioRecord.release();
-                mAudioRecord = null;
-                return -1;
-            }
+            // if (mAudioRecord.getState() != AudioRecord.STATE_INITIALIZED) {
+            //     Log.e(TAG, "Failed during initialization of AudioRecord");
+            //     mAudioRecord.release();
+            //     mAudioRecord = null;
+            //     return -1;
+            // }
 
-            mAudioRecord.startRecording();
+            // mAudioRecord.startRecording();
         }
 
         Log.v(TAG, "SDL capture: got " + ((mAudioRecord.getChannelCount() >= 2) ? "stereo" : "mono") + " " + ((mAudioRecord.getAudioFormat() == AudioFormat.ENCODING_PCM_16BIT) ? "16-bit" : "8-bit") + " " + (mAudioRecord.getSampleRate() / 1000f) + "kHz, " + desiredFrames + " frames buffer");

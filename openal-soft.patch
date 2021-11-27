@@ -1,0 +1,26 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 77b765c3..c039fe5d 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -1517,7 +1517,7 @@ if(ALSOFT_UTILS)
+     add_executable(openal-info utils/openal-info.c)
+     target_include_directories(openal-info PRIVATE ${OpenAL_SOURCE_DIR}/common)
+     target_compile_options(openal-info PRIVATE ${C_FLAGS})
+-    target_link_libraries(openal-info PRIVATE ${LINKER_FLAGS} OpenAL ${UNICODE_FLAG})
++    target_link_libraries(openal-info PRIVATE ${LINKER_FLAGS} OpenAL ${UNICODE_FLAG} OpenSLES log)
+     if(ALSOFT_INSTALL_EXAMPLES)
+         set(EXTRA_INSTALLS ${EXTRA_INSTALLS} openal-info)
+     endif()
+@@ -1597,10 +1597,10 @@ target_link_libraries(ex-common PUBLIC OpenAL PRIVATE ${RT_LIB})
+ 
+ if(ALSOFT_EXAMPLES)
+     add_executable(altonegen examples/altonegen.c)
+-    target_link_libraries(altonegen PRIVATE ${LINKER_FLAGS} ${MATH_LIB} ex-common ${UNICODE_FLAG})
++    target_link_libraries(altonegen PRIVATE ${LINKER_FLAGS} ${MATH_LIB} ex-common ${UNICODE_FLAG} OpenSLES log)
+ 
+     add_executable(alrecord examples/alrecord.c)
+-    target_link_libraries(alrecord PRIVATE ${LINKER_FLAGS} ex-common ${UNICODE_FLAG})
++    target_link_libraries(alrecord PRIVATE ${LINKER_FLAGS} ex-common ${UNICODE_FLAG} OpenSLES log)
+ 
+     if(ALSOFT_INSTALL_EXAMPLES)
+         set(EXTRA_INSTALLS ${EXTRA_INSTALLS} altonegen alrecord)
