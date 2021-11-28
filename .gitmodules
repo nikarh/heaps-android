@@ -3,8 +3,7 @@
 	url = https://github.com/HaxeFoundation/hashlink.git
 [submodule "sdl2"]
 	path = sdl2
-	url = https://github.com/spurious/SDL-mirror.git
-	branch = release-2.0.8
+	url = git@github.com:libsdl-org/SDL.git
 [submodule "libjpeg-turbo"]
 	path = libjpeg-turbo
 	url = https://github.com/openstf/android-libjpeg-turbo.git
